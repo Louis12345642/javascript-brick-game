@@ -157,19 +157,41 @@ const brick ={
     for(let c = 0; c< brick.coloumns; c++){
     bricks[r][c]={
     x:c*(brick.offSetLeft + brick.width)+brick.offSetLeft,
-    y:r*(brick.offSetTop + brick.heigth )+ brick.offSetTop +brick.marginTop
+    y:45,
+    status:true
     }
+    console.log(bricks[r][c].y)
     }
     
     }
 
 
+
+ //DRAW BRICKS FUNCTION
+ function drawBrick(){
+    //LOOP THROUGTH THE TWO DIMENTIONAL 
+    for( let r=0; r <brick.rows;r++){
+
+        for(let c =0; c<brick.coloumns;c++){
+            // this console log outputs the brick x and y position but there is a problem with the y variable 
+            console.log(bricks[r][c])
+            if(bricks[r][c].status){
+               ctx.fillStyle=brick.fillColor;
+                ctx.fillRect(bricks[r][c].x,bricks[r][c].y,bricks[r][c].width,bricks[r][c].height)
+                ctx.strokeStyle=brick.strokeColor;
+                ctx.strokeRect(bricks[r][c].x,bricks[r][c].y,bricks[r][c].width,bricks[r][c].height)
+
+            }
+        }
+    }
+ }
 
 // DRAW FUNCTION
 function draw(){
     drawPaddle();
     
     drawBall();
+    drawBrick();
 }
 
 // UPDATE GAME FUNCTION
