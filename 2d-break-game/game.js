@@ -160,7 +160,6 @@ const brick ={
     y:45,
     status:true
     }
-    console.log(bricks[r][c].y)
     }
     
     }
@@ -175,6 +174,7 @@ const brick ={
         for(let c =0; c<brick.coloumns;c++){
             // this console log outputs the brick x and y position but there is a problem with the y variable 
             console.log(bricks[r][c])
+        
             if(bricks[r][c].status){
                ctx.fillStyle=brick.fillColor;
                 ctx.fillRect(bricks[r][c].x,bricks[r][c].y,bricks[r][c].width,bricks[r][c].height)
@@ -206,6 +206,8 @@ function update(){
 }
 
 
+
+
 // GAME LOOP
 function loop(){
     // CLEAR THE CANVAS
@@ -220,6 +222,10 @@ function loop(){
 
 }
 loop();
+
+
+// things to figure out 
+//debug the bricks viewing on the screen
 
 
 
