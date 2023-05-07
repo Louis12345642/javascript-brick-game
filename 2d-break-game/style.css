@@ -1,0 +1,8 @@
+.center{
+  display: flex;
+  justify-content: center;
+  margin-top: 20%;
+  }
+.game-header{
+ text-align: center;
+}
