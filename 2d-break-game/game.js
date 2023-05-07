@@ -135,26 +135,27 @@ function ballPaddleCollision(){
 
 //CREATE THE BRICK OBJECT
 
-const brick ={
-    rows :5,
-    coloumns:3,
-    width:20,
-    heigth:20,
-    offSetLeft:20,
-    offSetTop:20,
-    fillColor:"#2e3548",
-    strokeColor:"#fff"
-    }  
+const brick = {
+    row : 1,
+    column : 5,
+    width : 55,
+    height : 20,
+    offSetLeft : 20,
+    offSetTop : 20,
+    marginTop : 40,
+    fillColor : "#2e3548",
+    strokeColor : "#FFF"
+} 
  //CREATE THE BRICK ARRAYS THAT STORE THE BRICKS POSITIONS
     
     let bricks =[];
     
     //CREATE THE POSITION OF THE BRICKS
-    for(let r =0; r < brick.rows; r++){
+    for(let r =0; r < brick.row; r++){
     
     //FILL THE BRICKS  POSITIONS
     bricks[r]=[]
-    for(let c = 0; c< brick.coloumns; c++){
+    for(let c = 0; c< brick.column; c++){
     bricks[r][c]={
     x:c*(brick.offSetLeft + brick.width)+brick.offSetLeft,
     y:45,
@@ -165,33 +166,45 @@ const brick ={
     }
 
 
+    createBricks();
 
  //DRAW BRICKS FUNCTION
- function drawBrick(){
-    //LOOP THROUGTH THE TWO DIMENTIONAL 
-    for( let r=0; r <brick.rows;r++){
-
-        for(let c =0; c<brick.coloumns;c++){
-            // this console log outputs the brick x and y position but there is a problem with the y variable 
-            console.log(bricks[r][c])
-        
-            if(bricks[r][c].status){
-               ctx.fillStyle=brick.fillColor;
-                ctx.fillRect(bricks[r][c].x,bricks[r][c].y,bricks[r][c].width,bricks[r][c].height)
-                ctx.strokeStyle=brick.strokeColor;
-                ctx.strokeRect(bricks[r][c].x,bricks[r][c].y,bricks[r][c].width,bricks[r][c].height)
-
+ function createBricks(){
+    for(let r = 0; r < brick.rows; r++){
+        bricks[r] = [];
+        for(let c = 0; c < brick.coloumns; c++){
+            bricks[r][c] = {
+                x : c * ( brick.offSetLeft + brick.width ) + brick.offSetLeft,
+                y : r * ( brick.offSetTop + brick.height ) + brick.offSetTop + brick.marginTop,
+                status : true
             }
         }
     }
- }
+}
+
+
+ function drawBricks(){
+    for(let r = 0; r < brick.row; r++){
+        for(let c = 0; c < brick.column; c++){
+            let b = bricks[r][c];
+            // if the brick isn't broken
+            if(b.status){
+                ctx.fillStyle = brick.fillColor;
+                ctx.fillRect(b.x, b.y, brick.width, brick.height);
+                
+                ctx.strokeStyle = brick.strokeColor;
+                ctx.strokeRect(b.x, b.y, brick.width, brick.height);
+            }
+        }
+    }
+}
 
 // DRAW FUNCTION
 function draw(){
     drawPaddle();
     
     drawBall();
-    drawBrick();
+    drawBricks();
 }
 
 // UPDATE GAME FUNCTION
